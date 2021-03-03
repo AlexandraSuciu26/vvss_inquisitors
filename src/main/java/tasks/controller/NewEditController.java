@@ -14,8 +14,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
+import tasks.model.TaskValidator;
 import tasks.services.DateService;
-import tasks.services.TaskIO;
+import tasks.persistance.TaskIO;
 import tasks.services.TasksService;
 
 import java.io.IOException;
@@ -170,6 +171,8 @@ public class NewEditController {
         Task result = null;
         try {
             result = makeTask();
+            TaskValidator v = new TaskValidator();
+            v.validate(result);
         }
         catch (RuntimeException e){
             incorrectInputMade = true;

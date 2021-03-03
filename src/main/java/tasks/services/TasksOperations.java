@@ -1,12 +1,13 @@
-package tasks.model;
+package tasks.services;
 
 import javafx.collections.ObservableList;
+import tasks.model.Task;
 
 import java.util.*;
 
 public class TasksOperations {
 
-    public ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     public TasksOperations(ObservableList<Task> tasksList){
         tasks=new ArrayList<>();

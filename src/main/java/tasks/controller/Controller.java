@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
 import tasks.services.DateService;
-import tasks.services.TaskIO;
+import tasks.persistance.TaskIO;
 import tasks.services.TasksService;
-import tasks.view.Main;
+import tasks.Main;
 
 import java.io.IOException;
 import java.time.LocalDate;
