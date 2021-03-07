@@ -34,10 +34,10 @@ public class Controller {
     public static Stage editNewStage;
     public static Stage infoStage;
 
-    public static TableView mainTable;
+    public static TableView<Task> mainTable;
 
     @FXML
-    public  TableView tasks;
+    public TableView<Task> tasks;
     @FXML
     private TableColumn<Task, String> columnTitle;
     @FXML
@@ -90,15 +90,15 @@ public class Controller {
             editNewStage = new Stage();
             NewEditController.setCurrentStage(editNewStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
-            Parent root = loader.load();//getClass().getResource("/fxml/new-edit-task.fxml"));
+            Parent root = loader.load();
             NewEditController editCtrl = loader.getController();
             editCtrl.setService(service);
             editCtrl.setTasksList(tasksList);
-            editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
+            editCtrl.setCurrentTask(mainTable.getSelectionModel().getSelectedItem());
             editNewStage.setScene(new Scene(root, 600, 350));
             editNewStage.setResizable(false);
             editNewStage.initOwner(Main.primaryStage);
-            editNewStage.initModality(Modality.APPLICATION_MODAL);//??????
+            editNewStage.initModality(Modality.APPLICATION_MODAL);
             editNewStage.show();
         }
         catch (IOException e){
@@ -107,7 +107,7 @@ public class Controller {
     }
     @FXML
     public void deleteTask(){
-        Task toDelete = (Task)tasks.getSelectionModel().getSelectedItem();
+        Task toDelete = mainTable.getSelectionModel().getSelectedItem();
         tasksList.remove(toDelete);
         TaskIO.rewriteFile(tasksList);
     }
@@ -146,7 +146,7 @@ public class Controller {
     @FXML
     public void resetFilteredTasks(){
         tasks.setItems(tasksList);
-
+        updateCountLabel(tasksList);
     }
 
 }

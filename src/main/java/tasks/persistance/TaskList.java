@@ -22,7 +22,7 @@ public abstract class TaskList implements Iterable<Task>, Serializable  {
             incomingTasks = new ArrayTaskList();
         }
         else {
-            incomingTasks = new LinkedTaskList();
+            return null;
         }
 
         for(int i = 0; i < this.size(); i++){

@@ -14,15 +14,17 @@ import static java.util.Objects.isNull;
 public class LinkedTaskList extends TaskList {
     private static final Logger log = Logger.getLogger(LinkedTaskList.class.getName());
     private int numberOfTasks;
-    private Node last;
+    private transient Node last;
 
     @Override
     public void add(Task task) {
         numberOfTasks++;
         Node lastNode = last;
         Node newNode = new Node(task, lastNode);
-        if (last != null) last.setNext(newNode);
-        last = newNode;
+        if (last != null)
+            last.setNext(newNode);
+        else
+            last = newNode;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class LinkedTaskList extends TaskList {
             log.error("index doesn't exist");
             throw new IndexOutOfBoundsException("Index not found");
         }
-        int stepsBack = size() - index - 1;
+        int stepsBack = size() - index;
         Node current = last;
         while (stepsBack > 0) {
             current = current.getLast();
@@ -145,10 +147,6 @@ public class LinkedTaskList extends TaskList {
             return task;
         }
 
-        private void setTask(Task task) {
-            this.task = task;
-        }
-
         private Node getLast() {
             return last;
         }
@@ -181,7 +179,7 @@ public class LinkedTaskList extends TaskList {
         @Override
         public void remove() {
             if (lastCalled == -1) {
-                throw new IllegalStateException();
+                throw new IllegalStateException("Nu se poate sterge");
             }
             LinkedTaskList.this.remove(getTask(lastCalled));
             cursor = lastCalled;

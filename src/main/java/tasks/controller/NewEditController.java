@@ -14,7 +14,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
-import tasks.model.TaskValidator;
 import tasks.services.DateService;
 import tasks.persistance.TaskIO;
 import tasks.services.TasksService;
@@ -84,18 +83,13 @@ public class NewEditController {
                 break;
             case "btnEdit" : initEditWindow("Edit Task");
                 break;
+            default:
         }
     }
 
     @FXML
     public void initialize(){
         log.info("new/edit window initializing");
-//        switch (clickedButton.getId()){
-//            case  "btnNew" : initNewWindow("New Task");
-//                break;
-//            case "btnEdit" : initEditWindow("Edit Task");
-//                break;
-//        }
 
     }
     private void initNewWindow(String title){
@@ -125,12 +119,7 @@ public class NewEditController {
     @FXML
     public void switchRepeatedCheckbox(ActionEvent actionEvent){
         CheckBox source = (CheckBox)actionEvent.getSource();
-        if (source.isSelected()){
-            hideRepeatedTaskModule(false);
-        }
-        else if (!source.isSelected()){
-            hideRepeatedTaskModule(true);
-        }
+        hideRepeatedTaskModule(!source.isSelected());
     }
     private void hideRepeatedTaskModule(boolean toShow){
         datePickerEnd.setDisable(toShow);
@@ -147,7 +136,7 @@ public class NewEditController {
         Task collectedFieldsTask = collectFieldsData();
         if (incorrectInputMade) return;
 
-        if (currentTask == null){//no task was chosen -> add button was pressed
+        if (currentTask == null) {
             tasksList.add(collectedFieldsTask);
         }
         else {
@@ -171,8 +160,6 @@ public class NewEditController {
         Task result = null;
         try {
             result = makeTask();
-            TaskValidator v = new TaskValidator();
-            v.validate(result);
         }
         catch (RuntimeException e){
             incorrectInputMade = true;

@@ -97,7 +97,7 @@ public class Task implements Serializable, Cloneable {
 
     }
     public Date nextTimeAfter(Date current){
-        if (current.after(end) || current.equals(end))return null;
+        if ((current.after(end) || current.equals(end)) && !isRepeated()) return null;
         if (isRepeated() && isActive()){
             Date timeBefore  = start;
             Date timeAfter = start;
@@ -107,7 +107,7 @@ public class Task implements Serializable, Cloneable {
             if ((current.after(start) || current.equals(start)) && (current.before(end) || current.equals(end))){
                 for (long i = start.getTime(); i <= end.getTime(); i += interval*1000){
                     if (current.equals(timeAfter)) return new Date(timeAfter.getTime()+interval*1000);
-                    if (current.after(timeBefore) && current.before(timeAfter)) return timeBefore;//return timeAfter
+                    if (current.after(timeBefore) && current.before(timeAfter)) return timeBefore;
                     timeBefore = timeAfter;
                     timeAfter = new Date(timeAfter.getTime()+ interval*1000);
                 }
@@ -118,8 +118,6 @@ public class Task implements Serializable, Cloneable {
         }
         return null;
     }
-    //duplicate methods for TableView which sets column
-    // value by single method and doesn't allow passing parameters
     public String getFormattedDateStart(){
         return sdf.format(start);
     }

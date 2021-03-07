@@ -24,7 +24,7 @@ public class TasksService {
         int minutes = seconds / DateService.SECONDS_IN_MINUTE;
         int hours = minutes / DateService.MINUTES_IN_HOUR;
         minutes = minutes % DateService.MINUTES_IN_HOUR;
-        return formTimeUnit(hours) + ":" + formTimeUnit(minutes);//hh:MM
+        return formTimeUnit(hours) + ":" + formTimeUnit(minutes);
     }
     public String formTimeUnit(int timeUnit){
         StringBuilder sb = new StringBuilder();
@@ -48,7 +48,7 @@ public class TasksService {
     public Iterable<Task> filterTasks(Date start, Date end){
         TasksOperations tasksOps = new TasksOperations(getObservableList());
         Iterable<Task> filtered = tasksOps.incoming(start,end);
-        //Iterable<Task> filtered = tasks.incoming(start, end);
+
 
         return filtered;
     }

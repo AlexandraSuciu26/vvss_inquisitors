@@ -26,7 +26,7 @@ public class ArrayTaskList extends TaskList {
 
     @Override
     public void add(Task task) {
-        if (task.equals(null)) throw new NullPointerException("Task shouldn't be null");
+
         if (numberOfTasks == currentCapacity - 1) {
             currentCapacity = currentCapacity * 2;
             Task[] withAddedTask = new Task[currentCapacity];
@@ -116,11 +116,11 @@ public class ArrayTaskList extends TaskList {
 
     @Override
     protected ArrayTaskList clone() throws CloneNotSupportedException {
-        ArrayTaskList tasks = new ArrayTaskList();
+        ArrayTaskList newTasks = new ArrayTaskList();
         for (int i = 0; i < this.tasks.length; i++) {
-            tasks.add(this.getTask(i));
+            newTasks.add(this.getTask(i));
         }
-        return tasks;
+        return newTasks;
 
     }
 
@@ -146,7 +146,7 @@ public class ArrayTaskList extends TaskList {
         @Override
         public void remove() {
             if (lastCalled == -1) {
-                throw new IllegalStateException();
+                throw new IllegalStateException("Cannot delete");
             }
             ArrayTaskList.this.remove(getTask(lastCalled));
             cursor = lastCalled;
