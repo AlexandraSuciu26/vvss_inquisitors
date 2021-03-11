@@ -1,0 +1,19 @@
+
+H
+java:S1659–"%Declare "seconds" on a separate line.(ÚåÏ¾üÿÿÿÿ8§€µï€/
+u
+java:S3776•"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(œÂÁñøÿÿÿÿ8§€µï€/
+D
+java:S1659Æ"!Declare "end" on a separate line.(ÍôÁÑıÿÿÿÿ8§€µï€/
+F
+java:S1659–"#Declare "hours" on a separate line.(ÚåÏ¾üÿÿÿÿ8§€µï€/
+H
+java:S1659–"%Declare "minutes" on a separate line.(ÚåÏ¾üÿÿÿÿ8§€µï€/
+R
+java:S14815"0Remove this unused "titleLength" local variable.(ìôå‰ÿÿÿÿÿ8ö¾¢ï€/
+O
+java:S2885"-Make "simpleDateFormat" an instance variable.(ËÒÌıøÿÿÿÿ8ö¾¢ï€/
+B
+java:S1659£"Declare "j" on a separate line.(ñ³´Çÿÿÿÿÿ8§€µï€/
+=
+java:S1659…"Declare "j" on a separate line.(±é…8§€µï€/
