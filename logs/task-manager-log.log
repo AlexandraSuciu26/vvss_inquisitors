@@ -242,3 +242,11 @@
 2021-03-07 20:30:31 INFO  Main:38 - saved data reading
 2021-03-07 20:30:31 INFO  Main:43 - application start
 2021-03-07 20:30:32 INFO  Controller:75 - Main controller initializing
+2021-03-16 20:25:56 INFO  Main:38 - saved data reading
+2021-03-16 20:25:56 INFO  Main:43 - application start
+2021-03-16 20:25:56 INFO  Controller:75 - Main controller initializing
+2021-03-16 20:26:05 INFO  NewEditController:92 - new/edit window initializing
+2021-03-16 20:33:14 INFO  Main:38 - saved data reading
+2021-03-16 20:33:14 INFO  Main:43 - application start
+2021-03-16 20:33:14 INFO  Controller:75 - Main controller initializing
+2021-03-16 20:33:18 INFO  NewEditController:92 - new/edit window initializing

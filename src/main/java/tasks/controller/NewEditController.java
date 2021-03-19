@@ -1,5 +1,6 @@
 package tasks.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -178,24 +179,33 @@ public class NewEditController {
         return result;
     }
 
+    public Task addTask(String newTitle, Date newStartDate, Boolean isActive, Date newEndDate, int newInterval) {
+        Task result;
+        if (newEndDate == null && newInterval == (Integer) null) {
+            result = new Task(newTitle, newStartDate, newEndDate, newInterval);
+        } else {
+            result = new Task(newTitle, newStartDate);
+        }
+
+        result.setActive(isActive);
+        return result;
+    }
 
     private Task makeTask(){
         Task result;
         String newTitle = fieldTitle.getText();
         Date startDateWithNoTime = dateService.getDateValueFromLocalDate(datePickerStart.getValue());//ONLY date!!without time
         Date newStartDate = dateService.getDateMergedWithTime(txtFieldTimeStart.getText(), startDateWithNoTime);
-        if (checkBoxRepeated.isSelected()){
+        boolean isActive = checkBoxActive.isSelected();
+        boolean isRepeated = checkBoxRepeated.isSelected();
+        if (isRepeated) {
             Date endDateWithNoTime = dateService.getDateValueFromLocalDate(datePickerEnd.getValue());
             Date newEndDate = dateService.getDateMergedWithTime(txtFieldTimeEnd.getText(), endDateWithNoTime);
             int newInterval = service.parseFromStringToSeconds(fieldInterval.getText());
             if (newStartDate.after(newEndDate)) throw new IllegalArgumentException("Start date should be before end");
-            result = new Task(newTitle, newStartDate,newEndDate, newInterval);
-        }
-        else {
-            result = new Task(newTitle, newStartDate);
-        }
-        boolean isActive = checkBoxActive.isSelected();
-        result.setActive(isActive);
+            result = addTask(newTitle, newStartDate, isActive, newEndDate, newInterval);
+        } else
+            result = addTask(newTitle, newStartDate, isActive, null, (Integer) null);
         System.out.println(result);
         return result;
     }
