@@ -1,6 +1,8 @@
 package tasks.services;
 
 
+import tasks.model.Task;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -47,6 +49,11 @@ public class DateService {
         int minutes = calendar.get(Calendar.MINUTE);
 
         return service.formTimeUnit(hours) + ":" + service.formTimeUnit(minutes);
+    }
+
+    public Task addTask(String newTitle, Date newStartDate, Boolean isActive, Date newEndDate, Integer newInterval)
+    {
+        return service.addTask(newTitle, newStartDate, isActive, newEndDate, newInterval);
     }
 
 

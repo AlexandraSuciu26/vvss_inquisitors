@@ -1,6 +1,5 @@
 package tasks.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
-import tasks.services.DateService;
 import tasks.persistance.TaskIO;
+import tasks.services.DateService;
 import tasks.services.TasksService;
 
 import java.io.IOException;
@@ -179,17 +178,7 @@ public class NewEditController {
         return result;
     }
 
-    public Task addTask(String newTitle, Date newStartDate, Boolean isActive, Date newEndDate, int newInterval) {
-        Task result;
-        if (newEndDate == null && newInterval == (Integer) null) {
-            result = new Task(newTitle, newStartDate, newEndDate, newInterval);
-        } else {
-            result = new Task(newTitle, newStartDate);
-        }
 
-        result.setActive(isActive);
-        return result;
-    }
 
     private Task makeTask(){
         Task result;
@@ -203,9 +192,9 @@ public class NewEditController {
             Date newEndDate = dateService.getDateMergedWithTime(txtFieldTimeEnd.getText(), endDateWithNoTime);
             int newInterval = service.parseFromStringToSeconds(fieldInterval.getText());
             if (newStartDate.after(newEndDate)) throw new IllegalArgumentException("Start date should be before end");
-            result = addTask(newTitle, newStartDate, isActive, newEndDate, newInterval);
+            result = dateService.addTask(newTitle, newStartDate, isActive, newEndDate, newInterval);
         } else
-            result = addTask(newTitle, newStartDate, isActive, null, (Integer) null);
+            result = dateService.addTask(newTitle, newStartDate, isActive, null, (Integer) null);
         System.out.println(result);
         return result;
     }

@@ -45,6 +45,18 @@ public class TasksService {
         return result;
     }
 
+    public Task addTask(String newTitle, Date newStartDate, Boolean isActive, Date newEndDate, Integer newInterval) {
+        Task result;
+        if (newEndDate == null && newInterval == null) {
+            result = new Task(newTitle, newStartDate);
+        } else {
+            result = new Task(newTitle, newStartDate, newEndDate, newInterval);
+        }
+
+        result.setActive(isActive);
+        return result;
+    }
+
     public Iterable<Task> filterTasks(Date start, Date end){
         TasksOperations tasksOps = new TasksOperations(getObservableList());
         Iterable<Task> filtered = tasksOps.incoming(start,end);
