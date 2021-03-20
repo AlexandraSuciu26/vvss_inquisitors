@@ -36,7 +36,7 @@ class NewEditControllerTest {
 
     @Order(1)
     @Test
-    void bvaTitleValid() {
+    void ecpTitleValid() {
         Task task = dateService.addTask("1",
                 new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
                 false,null,null);
@@ -44,45 +44,7 @@ class NewEditControllerTest {
     }
 
     @Order(2)
-    @DisplayName("bvaTitleInvalid")
-    @Test
-    void bvaTitleInvalid() {
-        Task task = dateService.addTask("",
-                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
-                false,null,null);
-        assertFalse(task.getTitle().length()>=1 && task.getTitle().length()<=255);
-    }
-
-    @Order(3)
-    @Test
-    void bvaTimeValid() {
-        Task task = dateService.addTask("",
-                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
-                false,null,null);
-        assertTrue(new GregorianCalendar(2000, Calendar.APRIL,1).getTime().before(task.getTime())
-                && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
-    }
-
-    @Order(4)
-    @Test
-    void bvaTimeInvalid() {
-        Task task = dateService.addTask("",
-                new GregorianCalendar(2000, Calendar.MAY,23).getTime(),
-                false,null,null);
-        assertFalse(new GregorianCalendar(2000, Calendar.APRIL,1).getTime().before(task.getTime())
-                && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
-    }
-
-    @Order(5)
-    @Test
-    void ecpTitleValidMinimumSize() {
-        Task task = dateService.addTask("1",
-                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
-                false,null,null);
-        assertTrue(task.getTitle().length()>=1 && task.getTitle().length()<=255);
-    }
-
-    @Order(6)
+    @DisplayName("ecpTitleInvalid")
     @Test
     void ecpTitleInvalidUnderMinimumSize() {
         Task task = dateService.addTask("",
@@ -91,18 +53,70 @@ class NewEditControllerTest {
         assertFalse(task.getTitle().length()>=1 && task.getTitle().length()<=255);
     }
 
+    @Order(3)
+    @DisplayName("ecpTitleInvalid")
+    @Test
+    void ecpTitleInvalidOverMaximumSize() {
+        String testTitle="";
+        for(int i=0;i<300;i++)
+            testTitle+="a";
+        System.out.println(testTitle);
+        Task task = dateService.addTask(testTitle,
+                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
+                false,null,null);
+        assertFalse(task.getTitle().length()>=1 && task.getTitle().length()<=255);
+    }
+
+    @Order(4)
+    @Test
+    void ecpTimeValid() {
+        Task task = dateService.addTask("",
+                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
+                false,null,null);
+        assertTrue(new GregorianCalendar(2000, Calendar.APRIL,1).getTime().before(task.getTime())
+                && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
+    }
+
+    @Order(5)
+    @Test
+    void ecpTimeInvalid() {
+        Task task = dateService.addTask("",
+                new GregorianCalendar(2000, Calendar.MAY,23).getTime(),
+                false,null,null);
+        assertFalse(new GregorianCalendar(2000, Calendar.APRIL,1).getTime().before(task.getTime())
+                && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
+    }
+
+    @Order(6)
+    @Test
+    void bvaTitleValidMinimumSize() {
+        Task task = dateService.addTask("1",
+                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
+                false,null,null);
+        assertTrue(task.getTitle().length()>=1 && task.getTitle().length()<=255);
+    }
+
     @Order(7)
     @Test
-    void ecpTitleValidOverMinimumSize() {
+    void bvaTitleInvalidUnderMinimumSize() {
+        Task task = dateService.addTask("",
+                new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
+                false,null,null);
+        assertFalse(task.getTitle().length()>=1 && task.getTitle().length()<=255);
+    }
+
+    @Order(8)
+    @Test
+    void bvaTitleValidOverMinimumSize() {
         Task task = dateService.addTask("23",
                 new GregorianCalendar(2000, Calendar.APRIL,23).getTime(),
                 false,null,null);
         assertTrue(task.getTitle().length()>=1 && task.getTitle().length()<=255);
     }
 
-    @Order(8)
+    @Order(9)
     @Test
-    void ecpTitleValidMaximumSize() {
+    void bvaTitleValidMaximumSize() {
         String testTitle="";
         for(int i=0;i<255;i++)
             testTitle+="a";
@@ -112,9 +126,9 @@ class NewEditControllerTest {
         assertTrue(task.getTitle().length()>=1 && task.getTitle().length()<=255);
     }
 
-    @Order(9)
+    @Order(10)
     @Test
-    void ecpTitleValidUnderMaximumSize() {
+    void bvaTitleValidUnderMaximumSize() {
         String testTitle="";
         for(int i=0;i<254;i++)
             testTitle+="a";
@@ -126,8 +140,8 @@ class NewEditControllerTest {
 
     @ParameterizedTest(name = "Maximum length")
     @ValueSource(ints = { 256 })
-    @Order(10)
-    void ecpTitleInvalidOverMaximumSize(int test) {
+    @Order(11)
+    void bvaTitleInvalidOverMaximumSize(int test) {
         String testTitle="";
         for(int i=0;i<test;i++)
             testTitle+="a";
@@ -137,9 +151,9 @@ class NewEditControllerTest {
         assertFalse(task.getTitle().length()>=1 && task.getTitle().length()<=255);
     }
 
-    @Order(11)
+    @Order(12)
     @Test
-    void ecpTimeInvalidMinimum() {
+    void bvaTimeInvalidMinimum() {
 
         Task task = dateService.addTask("",
                 new GregorianCalendar(2000, Calendar.APRIL,1).getTime(),
@@ -148,9 +162,9 @@ class NewEditControllerTest {
                 && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
     }
 
-    @Order(12)
+    @Order(13)
     @Test
-    void ecpTimeInvalidUnderMinimum() {
+    void bvaTimeInvalidUnderMinimum() {
         Task task = dateService.addTask("",
                 new GregorianCalendar(2000, Calendar.MARCH,31).getTime(),
                 false,null,null);
@@ -158,9 +172,9 @@ class NewEditControllerTest {
                 && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
     }
 
-    @Order(13)
+    @Order(14)
     @Test
-    void ecpTimeValidOverMinimum() {
+    void bvaTimeValidOverMinimum() {
 
         Task task = dateService.addTask("",
                 new GregorianCalendar(2000, Calendar.APRIL,2).getTime(),
@@ -169,9 +183,9 @@ class NewEditControllerTest {
                 && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
     }
 
-    @Order(14)
+    @Order(15)
     @Test
-    void ecpTimeInvalidMaximum() {
+    void bvaTimeInvalidMaximum() {
 
         Task task = dateService.addTask("",
                 new GregorianCalendar(2000, Calendar.APRIL,30).getTime(),
@@ -180,9 +194,9 @@ class NewEditControllerTest {
                 && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
     }
 
-    @Order(15)
+    @Order(16)
     @Test
-    void ecpTimeValidUnderMaximum() {
+    void bvaTimeValidUnderMaximum() {
         Task task = dateService.addTask("",
                 new GregorianCalendar(2000, Calendar.APRIL,29).getTime(),
                 false,null,null);
@@ -190,9 +204,9 @@ class NewEditControllerTest {
                 && task.getTime().before(new GregorianCalendar(2000, Calendar.APRIL,30).getTime()));
     }
 
-    @Order(16)
+    @Order(17)
     @Test
-    void ecpTimeInvalidOverMaximum() {
+    void bvaTimeInvalidOverMaximum() {
 
         Task task = dateService.addTask("",
                 new GregorianCalendar(2000, Calendar.MAY,1).getTime(),
