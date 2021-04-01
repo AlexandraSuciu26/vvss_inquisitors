@@ -56,5 +56,11 @@ public class DateService {
         return service.addTask(newTitle, newStartDate, isActive, newEndDate, newInterval);
     }
 
+    public TasksService getService() {
+        return service;
+    }
 
+    public void setService(TasksService service) {
+        this.service = service;
+    }
 }
