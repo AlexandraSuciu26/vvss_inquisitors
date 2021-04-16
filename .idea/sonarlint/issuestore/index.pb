@@ -43,3 +43,17 @@ Ptarget/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.ls
 +src/main/java/tasks/persistance/TaskIO.java,8\0\80ebf114bc371dfba929f376d921694f5ddaca23
 e
 5src/test/java/tasks/services/TasksOperationsTest.java,5\1\5192b34ce2e3bc53fd0c8a4761b30ef06e3c83d3
+f
+6src/test/java/tasks/persistance/ArrayTaskListTest.java,7\4\747134fe2d477c1111c3db85128aa1b8f190229b
+I
+index_SORT_BY_METHOD.html,3\9\39550d2749986643c6110578998bc0159c7ceb4e
+W
+'src/test/java/tasks/model/TaskTest.java,3\1\31324894a484d06adcd87a923fb98e2c49cb815e
+_
+/src/test/java/tasks/services/Pas2Integrare.java,e\b\eb71cdbbfad528abb855e934044a169db075360f
+_
+/src/test/java/tasks/services/Pas3Integrare.java,4\4\444c94fa56eddf33d8f23324e0b10ff6141d41e0
+i
+9src/test/java/tasks/controller/NewEditControllerTest.java,3\7\37c5227067038b24989aac026b3d5deb3328aa53
+b
+2src/test/java/tasks/services/TasksServiceTest.java,1\e\1ed2e4afe6f0e30a24669299239d591463d36916
