@@ -41,3 +41,5 @@ Ptarget/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.ls
 -src/main/java/tasks/services/DateService.java,b\a\ba27869b1e0ea8fe162ea3b4618a07816f29da05
 [
 +src/main/java/tasks/persistance/TaskIO.java,8\0\80ebf114bc371dfba929f376d921694f5ddaca23
+e
+5src/test/java/tasks/services/TasksOperationsTest.java,5\1\5192b34ce2e3bc53fd0c8a4761b30ef06e3c83d3

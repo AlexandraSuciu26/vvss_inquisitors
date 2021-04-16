@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class TasksService {
 
-    private ArrayTaskList tasks;
+    public ArrayTaskList tasks;
 
     public TasksService(ArrayTaskList tasks){
         this.tasks = tasks;
@@ -44,7 +44,9 @@ public class TasksService {
         int result = (hours * DateService.MINUTES_IN_HOUR + minutes) * DateService.SECONDS_IN_MINUTE;
         return result;
     }
-
+    public void addTask(Task t){
+        tasks.add(t);
+    }
     public Task addTask(String newTitle, Date newStartDate, Boolean isActive, Date newEndDate, Integer newInterval) {
         Task result;
         if (newEndDate == null && newInterval == null) {
@@ -54,6 +56,7 @@ public class TasksService {
         }
 
         result.setActive(isActive);
+        tasks.add(result);
         return result;
     }
 

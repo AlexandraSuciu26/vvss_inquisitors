@@ -261,3 +261,5 @@
 2021-03-19 19:33:38 INFO  Main:38 - saved data reading
 2021-03-19 19:33:38 INFO  Main:43 - application start
 2021-03-19 19:33:39 INFO  Controller:75 - Main controller initializing
+2021-04-16 15:31:52 ERROR ArrayTaskList:66 - not existing index
+2021-04-16 15:34:42 ERROR ArrayTaskList:66 - not existing index
